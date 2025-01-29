@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
-            $table->string('telefone');
+            $table->date('data_nascimento');
             $table->string('cpf')->unique();
-            $table->boolean('conhece_marca')->default(false);
+            $table->enum('tipo_queijo', ['BRIE', 'CAMEMBERT', 'GORGONZOLA', 'EMMENTAL', 'GRUYERE', 'GOUDA', 'PARMESÃO', 'REINO'])->default('BRIE');
+
+            $table->boolean('termos_aceitos')->default(false);
+
             $table->timestamps();
         });
+
     }
 
     /**

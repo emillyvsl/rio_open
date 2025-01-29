@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tempo_piramide', function (Blueprint $table) {
+        Schema::create('jogos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('participante_id');
-            $table->unsignedBigInteger('piramide_id');
-            $table->time('tempo');
-
-            $table->foreign('participante_id')->references('id')->on('participantes');
-            $table->foreign('piramide_id')->references('id')->on('piramide');
-
+            $table->enum('tipo_jogo', ['PIRAMIDE', 'PERGUNTAS'])->nullable();
+            $table->integer('tempo')->default(0);
+            $table->integer('pontuacao')->default(0);
             $table->timestamps();
+            $table->foreign('participante_id')->references('id')->on('participantes')->onDelete('cascade');
+
         });
     }
 
@@ -29,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tempo_piramide');
+        // Ajuste: dropIfExists('jogos') (e não 'piramides')
+        Schema::dropIfExists('jogos');
     }
 };

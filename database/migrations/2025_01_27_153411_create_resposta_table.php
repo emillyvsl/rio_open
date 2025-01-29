@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('respostas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pergunta_id');
-            $table->string('nome');
+            $table->text('alternativa');
             $table->boolean('is_correta')->default(false);
-
             $table->foreign('pergunta_id')->references('id')->on('perguntas');
             $table->timestamps();
         });
