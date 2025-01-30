@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard',[ParticipanteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', [ParticipanteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -26,7 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/tempo-piramide', [PiramideController::class, 'index'])->name('piramide.index');
 
 
-    Route::get('/quiz', [PerguntasController::class, 'index'])->name('pergunta.index');
+    Route::get('/quiz/{id}', [PerguntasController::class, 'index'])->name('pergunta.index');
+    Route::post('/quiz/salvar', [PerguntasController::class, 'store'])->name('pergunta.store');
+
 
 
 

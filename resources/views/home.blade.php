@@ -13,8 +13,8 @@
             <div class="bg-[#161515] text-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-4 flex justify-between items-center border-b border-gray-700">
                     <h2 class="text-lg font-semibold">Cadastros</h2>
-                    <input type="text" id="searchInput" placeholder="Procurar por CPF ou Nome"
-                        class="bg-white text-black px-4 py-2 rounded-full shadow-md">
+                    <input type="text" id="searchInput" placeholder="Procurar por CPF "
+                        class="bg-white text-black px-4 py-2 rounded-full shadow-md w-4/12">
                 </div>
 
                 <table class="w-full text-sm text-left text-white border-collapse border-spacing-0">
@@ -48,7 +48,8 @@
                                     @endphp
                                     {{ $perguntas ? $perguntas->tempo : '--:--:--' }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4"
+                                    style="{{ $piramide ? 'pointer-events: none; opacity: 0.5;' : '' }}">
                                     <div class="flex space-x-4 items-center">
                                         <a href="{{ route('piramide.index') }}">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -59,7 +60,8 @@
                                             </svg>
                                         </a>
 
-                                        <a href="{{ route('pergunta.index') }}" class="px-4">
+                                        <a href="{{ route('pergunta.index', ['id' => $participante->id]) }}"
+                                            class="px-4"style="{{ $perguntas ? 'pointer-events: none; opacity: 0.5;' : '' }}">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -79,7 +81,8 @@
     </div>
 
     {{-- Modal --}}
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden"
+        x-data="cpfHandler()">
         <div class="bg-white w-[90%] sm:w-[400px] rounded-lg shadow-lg p-6">
             <h3 class="text-lg font-semibold mb-4 text-[#003F8E]">Novo Cadastro</h3>
 
@@ -163,7 +166,7 @@
             let rows = document.querySelectorAll("#cadastroTable tr");
 
             rows.forEach(row => {
-                let cpf = row.querySelector(".cpf").textContent.toLowerCase();
+                {{--  let cpf = row.querySelector(".cpf").textContent.toLowerCase();  --}}
                 let nome = row.querySelector(".nome").textContent.toLowerCase();
 
                 if (cpf.includes(searchValue) || nome.includes(searchValue)) {

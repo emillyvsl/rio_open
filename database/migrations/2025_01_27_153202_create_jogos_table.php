@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('participante_id');
             $table->enum('tipo_jogo', ['PIRAMIDE', 'PERGUNTAS'])->nullable();
-            $table->integer('tempo')->default(0);
+            $table->string('tempo')->default(0);
             $table->integer('pontuacao')->default(0);
             $table->timestamps();
             $table->foreign('participante_id')->references('id')->on('participantes')->onDelete('cascade');
