@@ -72,6 +72,11 @@
             }
         }
 
+        // Função para parar o timer
+        function stopTimer() {
+            clearInterval(timerInterval); // Para o timer
+        }
+
         // Função para carregar a pergunta atual
         function loadQuestion() {
             let question = questions[currentIndex];
@@ -168,25 +173,52 @@
 
         // Função para enviar os resultados
         function sendResults() {
+            stopTimer(); // Para o timer
+
             let elapsedTime = Date.now() - startTime; // Tempo total gasto
+            let correctAnswers = userAnswers.filter(answer => answer.isCorrect).length;
+            let wrongAnswers = userAnswers.length - correctAnswers;
+
+            // Formata o tempo gasto
+            let seconds = Math.floor(elapsedTime / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let remainingSeconds = seconds % 60;
+            let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+            let formattedTime =
+                `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
+
+            // Verifica se o usuário acertou todas as questões
+            const allCorrect = userAnswers.every(answer => answer.isCorrect);
+
+            // Exibe o modal com os resultados
+            Swal.fire({
+                icon: allCorrect ? 'success' : 'error',
+                title: allCorrect ? 'Parabéns!' : 'Poxa..',
+                html: `
+                    <div class="text-center">
+                        <p>Tempo gasto: <strong>${formattedTime}</strong></p>
+                        <br/>
+                        <p>Acertos: <strong>${correctAnswers}</strong></p>
+                        <br/>
+                        <p>Erros: <strong>${wrongAnswers}</strong></p>
+                        <br/>
+                        <p>${allCorrect ? 'Você acertou todas as questões!' : 'Infelizmente, você errou alguma(as) questão(ões).'}</p>
+                    </div>
+                `,
+                background: '#003F8E', // Fundo azul
+                color: '#FFFFFF', // Texto branco
+                confirmButtonColor: '#000000', // Botão preto
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = '/home';
+            });
+
+            // Envia os resultados para o servidor
             let results = {
                 participanteId: @json($participanteId),
                 answers: userAnswers,
                 totalTime: elapsedTime
             };
-
-            // Exibe o spinner enquanto os dados são enviados
-            Swal.fire({
-                title: 'Enviando resultados...',
-                allowOutsideClick: false,
-                background: '#003F8E', // Fundo azul
-                color: '#FFFFFF', // Texto branco
-                confirmButtonColor: '#000000', // Botão preto
-                confirmButtonText: 'OK',
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
 
             fetch('/quiz/salvar', {
                     method: 'POST',
@@ -198,69 +230,14 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        // Verifica se o usuário acertou todas as questões
-                        const allCorrect = userAnswers.every(answer => answer.isCorrect);
-
-                        // Fecha o spinner
-                        Swal.close();
-
-                        // Exibe a mensagem personalizada
-                        if (allCorrect) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Parabéns!',
-                                text: 'Você acertou todas as questões!',
-                                background: '#003F8E', // Fundo azul
-                                color: '#FFFFFF', // Texto branco
-                                confirmButtonColor: '#000000', // Botão preto
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                window.location.href = '/home';
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ops...',
-                                text: 'Infelizmente, você errou alguma questão. Tente novamente!',
-                                background: '#003F8E', // Fundo azul
-                                color: '#FFFFFF', // Texto branco
-                                confirmButtonColor: '#000000', // Botão preto
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                window.location.href = '/home';
-                            });
-                        }
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Erro',
-                            text: 'Ocorreu um erro ao salvar os resultados.',
-                            background: '#003F8E', // Fundo azul
-                            color: '#FFFFFF', // Texto branco
-                            confirmButtonColor: '#000000', // Botão preto
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location.href = '/home';
-                        });
+                    if (!data.success) {
+                        console.error('Erro ao salvar os resultados:', data.message);
                     }
                 })
                 .catch(error => {
                     console.error('Erro:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro',
-                        text: 'Ocorreu um erro ao enviar os resultados.',
-                        background: '#003F8E', // Fundo azul
-                        color: '#FFFFFF', // Texto branco
-                        confirmButtonColor: '#000000', // Botão preto
-                        confirmButtonText: 'OK'
-                    }).then(() => {
-                        window.location.href = '/home';
-                    });
                 });
         }
-
 
         // Função para atualizar a barra de progresso
         function updateProgress() {

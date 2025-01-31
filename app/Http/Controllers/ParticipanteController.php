@@ -28,7 +28,7 @@ class ParticipanteController extends Controller
         $participante->fill($request->all());
         $participante->save();
 
-        return redirect()->route('home')->with('success', 'Participante cadastrado com sucesso.');
+        return redirect()->route('dashboard')->with('success', 'Participante cadastrado com sucesso.');
 
     }
 }
