@@ -14,8 +14,8 @@ class Estoque extends Model
     protected $fillable = [
         'nome',
         'quantidade',
+        'premios_entregues',
     ];
 
-    // Se precisar de relacionamentos adicionais (por exemplo, entregas de itens de estoque para participantes),
-    // você poderia criar outra tabela e relacionar aqui. Caso contrário, é apenas uma tabela simples.
+    
 }

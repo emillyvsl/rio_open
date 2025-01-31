@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/quiz/salvar', [PerguntasController::class, 'store'])->name('pergunta.store');
 
     Route::get('/estoque', action: [EstoqueController::class, 'index'])->name('estoque.index');
+    Route::post('/estoque', action: [EstoqueController::class, 'store'])->name('estoque.store');
+    Route::post('/estoque/remover', action: [EstoqueController::class, 'remover'])->name('estoque.remover');
+    Route::delete('/estoque/{id}', action: [EstoqueController::class, 'destroy'])->name('estoque.destroy');
 
 
 

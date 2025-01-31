@@ -68,8 +68,23 @@
             // Envia os resultados automaticamente após 1 minuto e 10 segundos
             if (minutes >= 1 && remainingSeconds >= 10) {
                 clearInterval(timerInterval); // Para o timer
+                markUnansweredQuestionsAsWrong(); // Marca perguntas não respondidas como erradas
                 sendResults(); // Envia os resultados
             }
+        }
+
+        // Função para marcar perguntas não respondidas como erradas
+        function markUnansweredQuestionsAsWrong() {
+            questions.forEach((question, index) => {
+                if (progressHistory[index] === null) {
+                    progressHistory[index] = false; // Marca como errada
+                    userAnswers.push({
+                        questionId: question.id, // ID da pergunta
+                        selectedAnswerId: null, // Nenhuma alternativa selecionada
+                        isCorrect: false // Resposta errada
+                    });
+                }
+            });
         }
 
         // Função para parar o timer

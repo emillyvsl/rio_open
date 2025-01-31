@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->integer('quantidade');
-            $table->enum('tipo_premio', ['TOP','MEDIO','BAIXO'])->default('BAIXO');
+            $table->string('premios_entregues')->nullable();
             $table->timestamps();
         });
     }

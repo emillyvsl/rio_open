@@ -1,9 +1,9 @@
 <x-app-layout>
     {{-- Container com a Moldura --}}
-    <div class="min-h-screen bg-cover bg-center flex justify-center items-center relative" style="background-image: url('{{ asset('images/fundo-moldura.png') }}'); background-size: cover;">
+    <div class="min-h-screen bg-cover bg-center flex justify-center items-center relative" style="object-fit: cover; background-image: url('{{ asset('images/fundo-moldura.png') }}'); background-size: cover;">
 
         {{-- Área Interna com Fundo Preto --}}
-        <div class="relative flex flex-col justify-center items-center w-[90%] h-[90%] bg-black bg-opacity-75 rounded-lg p-8">
+        <div class="relative flex flex-col justify-center items-center w-full sm:w-[90%] md:w-[80%] lg:w-[60%] h-full sm:h-[90%] md:h-[80%] lg:h-[70%] bg-opacity-75 rounded-lg p-8">
 
             {{-- Timer --}}
             <div class="flex flex-col items-center space-y-4 w-full">
@@ -11,7 +11,7 @@
                     INICIAR
                 </button>
 
-                <div id="timerDisplay" class="text-white text-8xl font-bold py-16">00:00:00</div>
+                <div id="timerDisplay" class="text-white text-4xl sm:text-6xl md:text-8xl font-bold py-16 sm:py-20 md:py-32">00:00:00</div>
 
                 <button id="stopButton" class="bg-gray-500 text-white px-6 py-2 rounded-md w-40 text-lg font-semibold hover:bg-gray-600 transition" disabled>
                     PARAR
