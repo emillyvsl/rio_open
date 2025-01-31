@@ -11,7 +11,7 @@ class ParticipanteController extends Controller
     {
         $participantes = Participante::with('jogos')->get();
 
-        return view('dashboard', data: compact('participantes'));
+        return view('home', data: compact('participantes'));
     }
     public function store(Request $request)
     {
@@ -28,7 +28,6 @@ class ParticipanteController extends Controller
         $participante->fill($request->all());
         $participante->save();
 
-        return redirect()->route('dashboard')->with('success', 'Participante cadastrado com sucesso.');
-
+        return redirect()->route('dashboard')->with('success', 'Participante cadastrado com sucesso!');
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('jogo_id');
             $table->unsignedBigInteger('pergunta_id');
-            $table->unsignedBigInteger('resposta_id');
+            $table->unsignedBigInteger('resposta_id')->nullable();
             $table->boolean('is_correta')->default(false);
 
             $table->foreign('jogo_id')->references('id')->on('jogos')->onDelete('cascade');

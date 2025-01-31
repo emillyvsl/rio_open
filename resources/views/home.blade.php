@@ -1,5 +1,6 @@
 <x-app-layout>
-    {{-- Fundo com Imagem --}}
+
+
     <div class="min-h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/fundo.png') }}');">
         {{-- Botão de Novo Cadastro --}}
         <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-6">
@@ -7,14 +8,27 @@
                 + Novo cadastro
             </button>
         </div>
-
+        @if (session('success') || session('error'))
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: '{{ session('success') ? 'success' : 'error' }}',
+                        title: '{{ session('success') ? 'Sucesso!' : 'Erro!' }}',
+                        text: '{{ session('success') ?? session('error') }}',
+                        background: '#003F8E',
+                        color: '#ffffff',
+                        confirmButtonColor: '#000'
+                    });
+                });
+            </script>
+        @endif
         {{-- Tabela de Cadastros --}}
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-[#161515] text-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-4 flex justify-between items-center border-b border-gray-700">
                     <h2 class="text-lg font-semibold">Cadastros</h2>
-                    <input type="text" id="searchInput" placeholder="Procurar por CPF ou Nome"
-                        class="bg-white text-black px-4 py-2 rounded-full shadow-md">
+                    <input type="number" id="searchInput" placeholder="Procurar por CPF"
+                        class="bg-white text-black px-4 py-2 rounded-full shadow-md w-4/12">
                 </div>
 
                 <table class="w-full text-sm text-left text-white border-collapse border-spacing-0">
@@ -29,8 +43,8 @@
                     </thead>
                     <tbody id="cadastroTable">
                         @foreach ($participantes as $participante)
-                            <tr class="border-b border-gray-700 ">
-                                <td class="px-6 py-4 cpf ">{{ $participante->cpf }}</td>
+                            <tr class="border-b border-gray-700">
+                                <td class="px-6 py-4 cpf">{{ $participante->cpf }}</td>
                                 <td class="px-6 py-4 nome">{{ $participante->nome }}</td>
 
                                 <!-- Tempo do Jogo Pirâmide -->
@@ -48,9 +62,13 @@
                                     @endphp
                                     {{ $perguntas ? $perguntas->tempo : '--:--:--' }}
                                 </td>
+
+                                <!-- Botões de Ativação -->
                                 <td class="px-6 py-4">
                                     <div class="flex space-x-4 items-center">
-                                        <a href="{{ route('piramide.index') }}">
+                                        <!-- Botão Piramide -->
+                                        <a href="{{ route('piramide.index', ['id' => $participante->id]) }}"
+                                            style="{{ $piramide ? 'pointer-events: none; opacity: 0.1;' : '' }}">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -59,7 +77,9 @@
                                             </svg>
                                         </a>
 
-                                        <a href="{{ route('pergunta.index') }}" class="px-4">
+                                        <!-- Botão Perguntas -->
+                                        <a href="{{ route('pergunta.index', ['id' => $participante->id]) }}"
+                                            style="{{ $perguntas ? 'pointer-events: none; opacity: 0.1;' : '' }}">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -69,7 +89,6 @@
                                         </a>
                                     </div>
                                 </td>
-
                             </tr>
                         @endforeach
                     </tbody>
@@ -79,7 +98,8 @@
     </div>
 
     {{-- Modal --}}
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden"
+        x-data="cpfHandler()">
         <div class="bg-white w-[90%] sm:w-[400px] rounded-lg shadow-lg p-6">
             <h3 class="text-lg font-semibold mb-4 text-[#003F8E]">Novo Cadastro</h3>
 
@@ -115,7 +135,9 @@
                 <div>
                     <label for="tipo_queijo" class="block text-sm font-medium text-[#003F8E]">Queijo premium</label>
                     <select name="tipo_queijo" id="tipo_queijo"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50">
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                        required>
+                        <option value="" disabled selected>SELECIONE</option>
                         <option value="BRIE">BRIE</option>
                         <option value="CAMEMBERT">CAMEMBERT</option>
                         <option value="GORGONZOLA">GORGONZOLA</option>
@@ -127,13 +149,17 @@
                     </select>
                 </div>
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center space-x-2">
                         <input type="checkbox" name="termos_aceitos" value="1"
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
-                        <span class="ml-2 text-sm text-[#003F8E] font-semibold">ESTOU DE ACORDO COM OS TERMOS DA
-                            VIGOR</span>
+                        <span class="text-sm text-[#003F8E] font-semibold">
+                            <a href="https://www.vigor.com.br/politica-de-privacidade" class="underline">
+                                ESTOU DE ACORDO COM OS TERMOS DA VIGOR
+                            </a>
+                        </span>
                     </label>
+
                 </div>
                 <div class="flex justify-between">
                     <button id="closeModalButton" type="button" class="text-[#003F8E] font-semibold hover:underline">
@@ -147,8 +173,13 @@
         </div>
     </div>
 
-    {{-- JavaScript para Modal e Filtro --}}
+    {{-- JavaScript para Máscara de CPF e Modal --}}
     <script>
+        // Máscara para CPF com Inputmask
+        const cpfInput = document.getElementById('cpf');
+        const maskCpf = new Inputmask('999.999.999-99');
+        maskCpf.mask(cpfInput);
+
         document.getElementById('openModalButton').addEventListener('click', function() {
             document.getElementById('modal').classList.remove('hidden');
         });
@@ -164,9 +195,9 @@
 
             rows.forEach(row => {
                 let cpf = row.querySelector(".cpf").textContent.toLowerCase();
-                let nome = row.querySelector(".nome").textContent.toLowerCase();
+                {{--  let nome = row.querySelector(".nome").textContent.toLowerCase();  --}}
 
-                if (cpf.includes(searchValue) || nome.includes(searchValue)) {
+                if (cpf.includes(searchValue)) {
                     row.style.display = "";
                 } else {
                     row.style.display = "none";
