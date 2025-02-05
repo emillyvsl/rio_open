@@ -11,7 +11,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-14">
+                        <img src="{{ asset('images/nav.png') }}" alt="Logo" class="h-14">
                     </a>
                 </div>
 

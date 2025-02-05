@@ -1,7 +1,9 @@
 <x-app-layout>
-
-
-    <div class="min-h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/fundo.png') }}');">
+    <div class="min-h-screen bg-cover bg-center "
+        style="background-image: url('{{ asset('images/fundo-tab.png') }}');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;">
         {{-- Botão de Novo Cadastro --}}
         <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-6">
             <button id="openModalButton" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
@@ -89,8 +91,17 @@
                                         </a>
                                     </div>
                                 </td>
+
                             </tr>
                         @endforeach
+                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            @if ($participantes->count() == 0)
+                                Nenhum inscrito encontrado.
+                            @else
+                                {{ $participantes->links() }}
+                            @endif
+
+                        </td>
                     </tbody>
                 </table>
             </div>
@@ -133,7 +144,9 @@
                         required>
                 </div>
                 <div>
-                    <label for="tipo_queijo" class="block text-sm font-medium text-[#003F8E]">Queijo premium</label>
+                    <label for="tipo_queijo" class="block text-sm font-medium text-[#003F8E]">Qual o seu queijo especial
+                        favorito?
+                        </label>
                     <select name="tipo_queijo" id="tipo_queijo"
                         class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                         required>
@@ -142,7 +155,7 @@
                         <option value="CAMEMBERT">CAMEMBERT</option>
                         <option value="GORGONZOLA">GORGONZOLA</option>
                         <option value="EMMENTAL">EMMENTAL</option>
-                        <option value="GRUYERE">GRUYERE</option>
+                        <option value="GRUYERE">GRUYÈRE</option>
                         <option value="GOUDA">GOUDA</option>
                         <option value="PARMESÃO">PARMESÃO</option>
                         <option value="REINO">REINO</option>
@@ -150,19 +163,28 @@
                 </div>
                 <div>
                     <label class="inline-flex items-center space-x-2">
+                        <input type="checkbox" name="termos_lgpd" value="1"
+                            class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                            required>
+                        <span class="text-sm text-[#003F8E] font-semibold">
+                            Concordo com os termos e condições da ação, autorizo o uso dos meus dados pessoais
+                            conforme a Lei Geral de Proteção de Dados (LGPD).
+                        </span>
+                    </label>
+                    <label class="inline-flex items-center space-x-2 pt-2">
                         <input type="checkbox" name="termos_aceitos" value="1"
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
                         <span class="text-sm text-[#003F8E] font-semibold">
-                            <a href="https://www.vigor.com.br/politica-de-privacidade" class="underline">
-                                ESTOU DE ACORDO COM OS TERMOS DA VIGOR
-                            </a>
+                            Declaro estar ciente e de acordo com o regulamento da ativação.
+
                         </span>
                     </label>
 
                 </div>
                 <div class="flex justify-between">
-                    <button id="closeModalButton" type="button" class="text-[#003F8E] font-semibold hover:underline">
+                    <button id="closeModalButton" type="button"
+                        class="text-[#003F8E] font-semibold hover:underline">
                         X CANCELAR
                     </button>
                     <button type="submit" class="bg-[#003F8E] text-white px-4 py-2 rounded-md hover:bg-blue-700">
@@ -188,21 +210,25 @@
             document.getElementById('modal').classList.add('hidden');
         });
 
-        // Filtro na tabela por CPF ou Nome
         document.getElementById('searchInput').addEventListener('keyup', function() {
-            let searchValue = this.value.toLowerCase();
-            let rows = document.querySelectorAll("#cadastroTable tr");
+            let searchValue = this.value;
+            let url = "{{ route('dashboard') }}"; // Rota da sua página inicial
 
-            rows.forEach(row => {
-                let cpf = row.querySelector(".cpf").textContent.toLowerCase();
-                {{--  let nome = row.querySelector(".nome").textContent.toLowerCase();  --}}
-
-                if (cpf.includes(searchValue)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
+            // Envia uma requisição AJAX para o servidor
+            fetch(`${url}?searchCpf=${searchValue}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest' // Indica que é uma requisição AJAX
+                    }
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Atualiza a tabela com os novos dados
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(data, 'text/html');
+                    let newTableBody = doc.querySelector("#cadastroTable").innerHTML;
+                    document.querySelector("#cadastroTable").innerHTML = newTableBody;
+                })
+                .catch(error => console.error('Erro ao buscar participantes:', error));
         });
     </script>
 </x-app-layout>

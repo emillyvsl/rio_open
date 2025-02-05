@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller
 {
-    public function index()
-    {
-        $participantes = Participante::with('jogos')->get();
+    public function index(Request $request)
+{
+    $searchCpf = $request->input('searchCpf');
 
-        return view('home', data: compact('participantes'));
-    }
+    $participantes = Participante::with('jogos')
+        ->when($searchCpf, function ($query, $searchCpf) {
+            return $query->where('cpf', 'like', '%' . $searchCpf . '%');
+        })
+        ->paginate(10);
+
+    return view('home', compact('participantes'));
+}
+
     public function store(Request $request)
     {
         $request->validate([

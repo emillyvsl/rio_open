@@ -13,25 +13,29 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            body {
+                background-image: url('{{ asset('images/fundo.png') }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 100vh;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
     </head>
     <body class="font-sans text-gray-900 antialiased ">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-black">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-[254px] h-[194px]">
-
-                {{--  <a href="/">
-                    <x-application-logo class="w-[250px] h-[250px] fill-current text-white" />
-                </a>  --}}
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-[295px] h-[200px]">
             </div>
 
-
-            <div class="max-w-[520px] sm:max-w-[560px] lg:max-w-md mt-6 px-6 py-6 bg-stone-800 shadow-lg rounded-3xl sm:rounded-3xl flex flex-col justify-center items-center mx-auto min-w-[280px]">
+            <div class="max-w-[600px] w-full mt-6 px-8 py-8 bg-stone-800 shadow-lg rounded-3xl flex flex-col justify-center items-center mx-auto min-w-[320px]">
                 {{ $slot }}
             </div>
-
-
-
-
         </div>
     </body>
 </html>

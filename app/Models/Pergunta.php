@@ -13,6 +13,7 @@ class Pergunta extends Model
 
     protected $fillable = [
         'pergunta',
+        'dicas',
     ];
 
 

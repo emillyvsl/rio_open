@@ -1,43 +1,43 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('login') }}" class="space-y-6">
+    <form method="POST" action="{{ route('login') }}" class="space-y-6 w-full px-4 py-6">
         @csrf
 
-        <!-- Título -->
-        <h3 class="flex justify-center items-center mt-6 text-white text-xl font-bold">Login</h3>
+        <!-- Título Ampliado -->
+        <h3 class="flex justify-center items-center mb-8 text-white text-2xl font-bold">Login</h3>
 
         <!-- Email Address -->
-        <div>
+        <div class="mb-6">
             <x-text-input
                 id="email"
-                class="block w-full h-12 px-4 py-2 rounded-full md:rounded-full lg:rounded-full xl:rounded-full bg-black text-white border-2 border-gray-500 focus:border-[#1B1A95] outline-none transition-all duration-200 [:-webkit-autofill]:bg-black [:-webkit-autofill]:text-white"
+                class="block w-full h-14 px-6 text-lg rounded-full bg-white text-black border-2 border-gray-500 focus:border-[#1B1A95] outline-none transition-all duration-200"
                 type="email"
                 name="email"
                 :value="old('email')"
                 required
                 autofocus
-                autocomplete="username"
+                placeholder="Email"
             />
             <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-500" />
         </div>
 
         <!-- Password -->
-        <div>
+        <div class="mb-8">
             <x-text-input
                 id="password"
-                class="block w-full h-12 px-4 py-2 rounded-full md:rounded-full lg:rounded-full xl:rounded-full bg-black text-white border-2 border-gray-500 focus:border-[#1B1A95] outline-none transition-all duration-200 [:-webkit-autofill]:bg-black [:-webkit-autofill]:text-white"
+                class="block w-full h-14 px-6 text-lg rounded-full bg-white text-black border-2 border-gray-500 focus:border-[#1B1A95] outline-none transition-all duration-200"
                 type="password"
                 name="password"
                 required
-                autocomplete="current-password"
+                placeholder="Senha"
             />
             <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-500" />
         </div>
 
-        <!-- Login Button -->
-        <div class="flex justify-center items-center mt-6">
+        <!-- Botão Ampliado -->
+        <div class="flex justify-center items-center">
             <x-primary-button
                 style="background-color: #1B1A95;"
-                class="justify-center items-center w-full h-12 rounded-full md:rounded-full lg:rounded-full xl:rounded-full text-white font-semibold shadow-lg hover:opacity-90"
+                class="justify-center items-center w-full h-14 text-lg rounded-full text-white font-semibold hover:opacity-90 transition-all"
             >
                 {{ __('Entrar') }}
             </x-primary-button>

@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- Fundo com Imagem --}}
-    <div class="min-h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/fundo.png') }}');">
+    <div class="min-h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/fundo-tab.png') }}');">
         {{-- Botões de Novo Cadastro e Remover Item --}}
         <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-6">
             <button id="openModalButton" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
