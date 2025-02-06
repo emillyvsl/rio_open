@@ -44,7 +44,7 @@
       questions = questions.map(question => ({
         id: question.id, // ID da pergunta
         text: question.pergunta,
-        hint: 'Alguma dica aqui...',
+        hint: question.dicas,
         options: question.respostas.map(resp => ({
           id: resp.id, // ID da alternativa
           text: resp.alternativa
