@@ -34,8 +34,9 @@ class EstoqueController extends Controller
     {
         $item_id = Estoque::find($request->item);
         $quantidade = $request->get('quantidade');
+        $saldo = $item_id->quantidade - $item_id->premios_entregues;
 
-        if ($quantidade > $item_id->quantidade) {
+        if ( $quantidade > $saldo) {
             return redirect('/estoque')->with('error', 'Quantidade maior que a disponível!');
         }
 
@@ -57,6 +58,23 @@ class EstoqueController extends Controller
 
         return redirect('/estoque')->with('error', 'Item não encontrado!');
     }
+
+    public function update(Request $request)
+{
+
+    $estoque = Estoque::findOrFail($request->id);
+
+    if ($request->quantidade < $estoque->premios_entregues) {
+        return redirect('/estoque')->with('error', 'O estoque inicial  não pode ser alterado para menor que os prêmios entregues.');
+    }
+
+    $estoque->nome = $request->nome;
+    $estoque->quantidade = $request->quantidade;
+    $estoque->save();
+
+    return redirect('/estoque')->with('success', 'Prêmio atualizado com sucesso!');
+}
+
 
 
 

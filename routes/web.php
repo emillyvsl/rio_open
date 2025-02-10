@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/estoque', action: [EstoqueController::class, 'store'])->name('estoque.store');
     Route::post('/estoque/remover', action: [EstoqueController::class, 'remover'])->name('estoque.remover');
     Route::delete('/estoque/{id}', action: [EstoqueController::class, 'destroy'])->name('estoque.destroy');
+    Route::post('/estoque/editar', action: [EstoqueController::class, 'update'])->name('estoque.editar');
+
 
 
 
