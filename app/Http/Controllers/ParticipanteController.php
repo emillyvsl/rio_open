@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParticipanteRequest;
 use App\Models\Participante;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ParticipanteController extends Controller
     return view('home', compact('participantes'));
 }
 
-    public function store(Request $request)
+    public function store(ParticipanteRequest $request)
     {
         $request->validate([
             'nome' => 'required|string|max:255',

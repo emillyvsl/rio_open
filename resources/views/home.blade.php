@@ -114,65 +114,92 @@
         <div class="bg-white w-[90%] sm:w-[400px] rounded-lg shadow-lg p-6">
             <h3 class="text-lg font-semibold mb-4 text-[#003F8E]">Novo Cadastro</h3>
 
-            {{-- Formulário para Envio --}}
             <form action="{{ route('participante.store') }}" method="POST" class="space-y-4">
                 @csrf
 
                 <div>
                     <label for="cpf" class="block text-sm font-medium text-[#003F8E]">CPF</label>
-                    <input type="text" name="cpf" id="cpf"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                    <input type="text" name="cpf" id="cpf" value="{{ old('cpf') }}"
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('cpf') border-red-500 @enderror"
                         required>
+                    @error('cpf')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
+
                 <div>
                     <label for="nome" class="block text-sm font-medium text-[#003F8E]">Nome completo</label>
-                    <input type="text" name="nome" id="nome"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                    <input type="text" name="nome" id="nome" value="{{ old('nome') }}"
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('nome') border-red-500 @enderror"
                         required>
+                    @error('nome')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
+
                 <div>
                     <label for="email" class="block text-sm font-medium text-[#003F8E]">E-mail</label>
-                    <input type="email" name="email" id="email"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('email') border-red-500 @enderror"
                         required>
+                    @error('email')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
+
                 <div>
                     <label for="data_nascimento" class="block text-sm font-medium text-[#003F8E]">Data de
                         Nascimento</label>
                     <input type="date" name="data_nascimento" id="data_nascimento"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
+                        value="{{ old('data_nascimento') }}"
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('data_nascimento') border-red-500 @enderror"
                         required>
+                    @error('data_nascimento')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
+
                 <div>
-                    <label for="tipo_queijo" class="block text-sm font-medium text-[#003F8E]">Qual o seu queijo especial
-                        favorito?
-                        </label>
+                    <label for="tipo_queijo" class="block text-sm font-medium text-[#003F8E]">
+                        Qual o seu queijo favorito?
+                    </label>
                     <select name="tipo_queijo" id="tipo_queijo"
-                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
-                        required>
-                        <option value="" disabled selected>SELECIONE</option>
-                        <option value="BRIE">BRIE</option>
-                        <option value="CAMEMBERT">CAMEMBERT</option>
-                        <option value="GORGONZOLA">GORGONZOLA</option>
-                        <option value="EMMENTAL">EMMENTAL</option>
-                        <option value="GRUYERE">GRUYÈRE</option>
-                        <option value="GOUDA">GOUDA</option>
-                        <option value="PARMESÃO">PARMESÃO</option>
-                        <option value="REINO">REINO</option>
+                        class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('tipo_queijo') border-red-500 @enderror">
+                        <option value="" disabled {{ old('tipo_queijo') ? '' : 'selected' }}>SELECIONE</option>
+                        <option value="BRIE" {{ old('tipo_queijo') == 'BRIE' ? 'selected' : '' }}>BRIE</option>
+                        <option value="CAMEMBERT" {{ old('tipo_queijo') == 'CAMEMBERT' ? 'selected' : '' }}>CAMEMBERT</option>
+                        <option value="GORGONZOLA" {{ old('tipo_queijo') == 'GORGONZOLA' ? 'selected' : '' }}>GORGONZOLA</option>
+                        <option value="EMMENTAL" {{ old('tipo_queijo') == 'EMMENTAL' ? 'selected' : '' }}>EMMENTAL</option>
+                        <option value="GRUYERE" {{ old('tipo_queijo') == 'GRUYERE' ? 'selected' : '' }}>GRUYÈRE</option>
+                        <option value="GOUDA" {{ old('tipo_queijo') == 'GOUDA' ? 'selected' : '' }}>GOUDA</option>
+                        <option value="PARMESÃO" {{ old('tipo_queijo') == 'PARMESÃO' ? 'selected' : '' }}>PARMESÃO</option>
+                        <option value="REINO" {{ old('tipo_queijo') == 'REINO' ? 'selected' : '' }}>REINO</option>
                     </select>
+                    @error('tipo_queijo')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
+
+
                 <div>
                     <label class="inline-flex items-center space-x-2">
                         <input type="checkbox" name="termos_lgpd" value="1"
+                            {{ old('termos_aceitos') ? 'checked' : '' }}
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
-                        <span class="text-sm text-[#003F8E] font-semibold">
-                            Concordo com os termos e condições da ação, autorizo o uso dos meus dados pessoais
-                            conforme a Lei Geral de Proteção de Dados (LGPD).
+                        <span class="text-sm text-[#003F8E] font-semibold underline">
+                            <a href="https://www.vigor.com.br/politica-de-privacidade">Concordo com os termos e
+                                condições da ação, autorizo o uso dos meus dados pessoais
+                                conforme a Lei Geral de Proteção de Dados (LGPD).
+                            </a>
                         </span>
                     </label>
+                    @error('termos_aceitos')
+                        <span class="text-red-500 text-xs block">{{ $message }}</span>
+                    @enderror
                     <label class="inline-flex items-center space-x-2 pt-2">
                         <input type="checkbox" name="termos_aceitos" value="1"
+                            {{ old('termos_aceitos') ? 'checked' : '' }}
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
                         <span class="text-sm text-[#003F8E] font-semibold">
@@ -180,6 +207,10 @@
 
                         </span>
                     </label>
+                    @error('termos_aceitos')
+                        <span class="text-red-500 text-xs block">{{ $message }}</span>
+                    @enderror
+
 
                 </div>
                 <div class="flex justify-between">
@@ -195,40 +226,60 @@
         </div>
     </div>
 
-    {{-- JavaScript para Máscara de CPF e Modal --}}
     <script>
-        // Máscara para CPF com Inputmask
-        const cpfInput = document.getElementById('cpf');
-        const maskCpf = new Inputmask('999.999.999-99');
-        maskCpf.mask(cpfInput);
+        document.addEventListener("DOMContentLoaded", function() {
+            const cpfInput = document.getElementById('cpf');
+            if (cpfInput) {
+                const maskCpf = new Inputmask('999.999.999-99');
+                maskCpf.mask(cpfInput);
+            }
 
-        document.getElementById('openModalButton').addEventListener('click', function() {
-            document.getElementById('modal').classList.remove('hidden');
-        });
+            const modal = document.getElementById('modal');
+            const openModalButton = document.getElementById('openModalButton');
+            const closeModalButton = document.getElementById('closeModalButton');
 
-        document.getElementById('closeModalButton').addEventListener('click', function() {
-            document.getElementById('modal').classList.add('hidden');
-        });
+            // Abrir o modal
+            if (openModalButton) {
+                openModalButton.addEventListener('click', function() {
+                    modal.classList.remove('hidden');
+                });
+            }
 
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let searchValue = this.value;
-            let url = "{{ route('dashboard') }}"; // Rota da sua página inicial
+            // Fechar o modal e dar reload na página
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', function() {
+                    location.reload(); // Recarrega a página ao fechar o modal
+                });
+            }
 
-            // Envia uma requisição AJAX para o servidor
-            fetch(`${url}?searchCpf=${searchValue}`, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest' // Indica que é uma requisição AJAX
-                    }
-                })
-                .then(response => response.text())
-                .then(data => {
-                    // Atualiza a tabela com os novos dados
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(data, 'text/html');
-                    let newTableBody = doc.querySelector("#cadastroTable").innerHTML;
-                    document.querySelector("#cadastroTable").innerHTML = newTableBody;
-                })
-                .catch(error => console.error('Erro ao buscar participantes:', error));
+            // Se houver erro de validação, manter o modal aberto
+            @if ($errors->any())
+                modal.classList.remove('hidden');
+            @endif
+
+            // Implementação da busca por CPF na tabela
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function() {
+                    let searchValue = this.value;
+                    let url = "{{ route('dashboard') }}";
+
+                    fetch(`${url}?searchCpf=${searchValue}`, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            let parser = new DOMParser();
+                            let doc = parser.parseFromString(data, 'text/html');
+                            let newTableBody = doc.querySelector("#cadastroTable").innerHTML;
+                            document.querySelector("#cadastroTable").innerHTML = newTableBody;
+                        })
+                        .catch(error => console.error('Erro ao buscar participantes:', error));
+                });
+            }
         });
     </script>
+
 </x-app-layout>

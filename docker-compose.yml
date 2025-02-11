@@ -10,8 +10,8 @@ services:
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - '${APP_PORT:-8080}:80'  # Porta alterada para evitar conflito
+            - '${VITE_PORT:-5174}:${VITE_PORT:-5174}' # Alteração da porta do Vite
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -31,7 +31,7 @@ services:
         image: 'mysql:8.0'
         container_name: rio_mysql
         ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+            - '${FORWARD_DB_PORT:-3307}:3306'  # Alteração para evitar conflito
         environment:
             MYSQL_ROOT_PASSWORD: root_password
             MYSQL_DATABASE: example_db
@@ -56,7 +56,7 @@ services:
         image: 'redis:alpine'
         container_name: rio_redis
         ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
+            - '${FORWARD_REDIS_PORT:-6380}:6379'  # Alteração da porta Redis
         volumes:
             - 'sail-rio-redis:/data'
         networks:
@@ -73,8 +73,8 @@ services:
         image: 'minio/minio:latest'
         container_name: rio_minio
         ports:
-            - '${FORWARD_MINIO_PORT:-9000}:9000'
-            - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
+            - '${FORWARD_MINIO_PORT:-9001}:9000'  # Alteração para evitar conflito
+            - '${FORWARD_MINIO_CONSOLE_PORT:-8901}:8900'
         environment:
             MINIO_ROOT_USER: sail
             MINIO_ROOT_PASSWORD: password
@@ -82,13 +82,13 @@ services:
             - 'sail-rio-minio:/data/minio'
         networks:
             - rio-sail
-        command: 'minio server /data/minio --console-address ":8900"'
+        command: 'minio server /data/minio --console-address ":8901"'
         healthcheck:
             test:
                 - CMD
                 - curl
                 - '-f'
-                - 'http://localhost:9000/minio/health/live'
+                - 'http://localhost:9001/minio/health/live'
             retries: 3
             timeout: 5s
 
