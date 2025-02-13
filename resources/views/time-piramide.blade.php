@@ -1,10 +1,8 @@
 <x-app-layout>
-    <div class="w-screen h-screen z-[-1] absolute top-0 left-0 mt-[11vh] lg:mt-[10vh]">
-        <img src="{{ asset('images/fundo.png') }}" class="w-full h-full " />
-    </div>
+
     <!-- Container com a Moldura -->
-    <div class="min-h-screen bg-cover bg-center flex justify-center items-center relative  bg-moldura"
-      >
+    <div class="flex flex-col justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 bg-cover bg-center">
+        >
       <!-- Área Interna com Fundo Preto -->
       <div id="contentContainer"
         class="relative flex flex-col justify-center items-center w-full sm:w-[80%] md:w-[80%] lg:w-[60%] h-full sm:h-[90%] md:h-[80%] lg:h-[70%] bg-opacity-75 rounded-lg p-8">

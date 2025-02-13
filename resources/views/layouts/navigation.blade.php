@@ -3,10 +3,10 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 
-<nav x-data="{ open: false }" class="bg-black border-b border-blue-700">
+<nav x-data="{ open: false }" class="bg-black border-b-[3px]   border-blue-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-15">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">

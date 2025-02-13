@@ -94,14 +94,15 @@
 
                             </tr>
                         @endforeach
-                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td colspan="5"
+                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200 flex items-center justify-center text-center">
                             @if ($participantes->count() == 0)
-                                Nenhum inscrito encontrado.
+                                Nenhum participante encontrado.
                             @else
                                 {{ $participantes->links() }}
                             @endif
-
                         </td>
+
                     </tbody>
                 </table>
             </div>
@@ -167,12 +168,17 @@
                         class="mt-1 block w-full border rounded-md shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50 @error('tipo_queijo') border-red-500 @enderror">
                         <option value="" disabled {{ old('tipo_queijo') ? '' : 'selected' }}>SELECIONE</option>
                         <option value="BRIE" {{ old('tipo_queijo') == 'BRIE' ? 'selected' : '' }}>BRIE</option>
-                        <option value="CAMEMBERT" {{ old('tipo_queijo') == 'CAMEMBERT' ? 'selected' : '' }}>CAMEMBERT</option>
-                        <option value="GORGONZOLA" {{ old('tipo_queijo') == 'GORGONZOLA' ? 'selected' : '' }}>GORGONZOLA</option>
-                        <option value="EMMENTAL" {{ old('tipo_queijo') == 'EMMENTAL' ? 'selected' : '' }}>EMMENTAL</option>
-                        <option value="GRUYERE" {{ old('tipo_queijo') == 'GRUYERE' ? 'selected' : '' }}>GRUYÈRE</option>
+                        <option value="CAMEMBERT" {{ old('tipo_queijo') == 'CAMEMBERT' ? 'selected' : '' }}>CAMEMBERT
+                        </option>
+                        <option value="GORGONZOLA" {{ old('tipo_queijo') == 'GORGONZOLA' ? 'selected' : '' }}>
+                            GORGONZOLA</option>
+                        <option value="EMMENTAL" {{ old('tipo_queijo') == 'EMMENTAL' ? 'selected' : '' }}>EMMENTAL
+                        </option>
+                        <option value="GRUYERE" {{ old('tipo_queijo') == 'GRUYERE' ? 'selected' : '' }}>GRUYÈRE
+                        </option>
                         <option value="GOUDA" {{ old('tipo_queijo') == 'GOUDA' ? 'selected' : '' }}>GOUDA</option>
-                        <option value="PARMESÃO" {{ old('tipo_queijo') == 'PARMESÃO' ? 'selected' : '' }}>PARMESÃO</option>
+                        <option value="PARMESÃO" {{ old('tipo_queijo') == 'PARMESÃO' ? 'selected' : '' }}>PARMESÃO
+                        </option>
                         <option value="REINO" {{ old('tipo_queijo') == 'REINO' ? 'selected' : '' }}>REINO</option>
                     </select>
                     @error('tipo_queijo')

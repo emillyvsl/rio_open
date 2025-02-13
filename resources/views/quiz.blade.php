@@ -2,8 +2,7 @@
     <head>
       <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
-    <div class="min-h-screen flex flex-col justify-between items-center p-4 bg-cover bg-center "
-      style="background-image: url('{{ asset('images/fundo.png') }}');">
+<div class="flex flex-col justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 bg-cover bg-center">
       <!-- Container principal do quiz -->
       <div id="quizContainer" class="w-full max-w-3xl bg-opacity-80 p-6 rounded-lg shadow-lg">
         <!-- Timer -->
@@ -109,7 +108,7 @@
         question.options.forEach((option, index) => {
           let button = document.createElement("button");
           button.className =
-            "w-3/4 py-3 px-4 rounded-full text-left transition-colors duration-300 border-2 border-gray-100 flex items-center justify-start space-x-4 bg-gray-800 hover:bg-[#003F8E]";
+            "w-[40vh] py-3 px-4 rounded-full text-left transition-colors duration-300 border-2 border-gray-100 flex items-center justify-start space-x-4 bg-gray-800 hover:bg-[#003F8E]";
           button.innerHTML =
             `<span class="w-10 h-10 flex items-center justify-center text-white font-bold rounded-full border-2 border-gray-400">
                 ${String.fromCharCode(65 + index)}

@@ -21,9 +21,13 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen ">
         @include('layouts.navigation')
+        <div class="w-screen h-screen z-[-1] absolute top-0 left-0 ">
+            <img src="{{ asset('images/fundo.png') }}" class="w-full h-[93%] mt-[90px] " />
+        </div>
 
         <!-- Page Heading -->
         @isset($header)
+
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
