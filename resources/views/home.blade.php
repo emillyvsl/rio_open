@@ -1,9 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen bg-cover bg-center "
-        style="background-image: url('{{ asset('images/fundo-tab.png') }}');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;">
+    <div class="min-h-[10vh] bg-cover bg-center py-10 px-12">
         {{-- Botão de Novo Cadastro --}}
         <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-6">
             <button id="openModalButton" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
