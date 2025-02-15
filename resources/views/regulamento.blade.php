@@ -24,7 +24,7 @@
         <img src="{{ asset('images/nav.png') }}" alt="Logo" class="w-[190px] h-auto ml-[7%]">
 
         <!-- Botão de voltar -->
-        <button id="openModalButton"
+        {{--  <button id="openModalButton"
             class="bg-white text-[#003F8E] px-4 py-2 rounded-md flex items-center gap-2 mr-[7%] hover:bg-gray-200 ">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd"
@@ -32,7 +32,7 @@
                     clip-rule="evenodd" />
             </svg>
             Voltar
-        </button>
+        </button>  --}}
     </div>
 
     <!-- Container das imagens -->
