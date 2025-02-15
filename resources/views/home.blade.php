@@ -61,7 +61,6 @@
                                     {{ $perguntas ? $perguntas->tempo : '--:--:--' }}
                                 </td>
 
-                                <!-- Botões de Ativação -->
                                 <td class="px-6 py-4">
                                     <div class="flex space-x-4 items-center">
                                         <!-- Botão Piramide -->
@@ -75,7 +74,6 @@
                                             </svg>
                                         </a>
 
-                                        <!-- Botão Perguntas -->
                                         <a href="{{ route('pergunta.index', ['id' => $participante->id]) }}"
                                             style="{{ $perguntas ? 'pointer-events: none; opacity: 0.1;' : '' }}">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -190,7 +188,8 @@
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
                         <span class="text-sm text-[#003F8E] font-semibold underline">
-                            <a href="https://www.vigor.com.br/politica-de-privacidade">Concordo com os termos e
+                            <a href="https://www.vigor.com.br/politica-de-privacidade" target="_blank">Concordo com os
+                                termos e
                                 condições da ação, autorizo o uso dos meus dados pessoais
                                 conforme a Lei Geral de Proteção de Dados (LGPD).
                             </a>
@@ -205,8 +204,8 @@
                             class="rounded border-gray-300 text-[#003F8E] shadow-sm focus:ring-[#003F8E] focus:ring-opacity-50"
                             required>
                         <span class="text-sm text-[#003F8E] font-semibold">
-                            Declaro estar ciente e de acordo com o regulamento da ativação.
-
+                            <a href="{{ route('participante.regulamento') }}" target="_blank"
+                                class="underline">Declaro estar ciente e de acordo com o regulamento da ativação</a>.
                         </span>
                     </label>
                     @error('termos_aceitos')

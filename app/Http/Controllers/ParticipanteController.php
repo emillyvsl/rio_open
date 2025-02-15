@@ -9,17 +9,19 @@ use Illuminate\Http\Request;
 class ParticipanteController extends Controller
 {
     public function index(Request $request)
-{
-    $searchCpf = $request->input('searchCpf');
+    {
+        $searchCpf = $request->input('searchCpf');
 
-    $participantes = Participante::with('jogos')
-        ->when($searchCpf, function ($query, $searchCpf) {
-            return $query->where('cpf', 'like', '%' . $searchCpf . '%');
-        })
-        ->paginate(10);
+        $participantes = Participante::with('jogos')
+            ->when($searchCpf, function ($query, $searchCpf) {
+                return $query->where('cpf', 'like', '%' . $searchCpf . '%');
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
-    return view('home', compact('participantes'));
-}
+        return view('home', compact('participantes'));
+    }
+
 
     public function store(ParticipanteRequest $request)
     {
@@ -37,5 +39,10 @@ class ParticipanteController extends Controller
         $participante->save();
 
         return redirect()->route('dashboard')->with('success', 'Participante cadastrado com sucesso!');
+    }
+
+    public function regulamento()
+    {
+        return view('regulamento');
     }
 }

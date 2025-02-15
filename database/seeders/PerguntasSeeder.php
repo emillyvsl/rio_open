@@ -14,113 +14,66 @@ class PerguntasSeeder extends Seeder
     {
         $perguntasRespostas = [
             [
-                'pergunta' => 'Qual movimento no tênis combina com a textura consistente, marcante e granulada do parmesão?',
+                'pergunta' => 'Qual queijo de Faixa Azul recebeu uma medalha no maior concurso de queijos do mundo (World Cheese Awards)?',
                 'respostas' => [
-                    ['alternativa' => 'Slice', 'is_correta' => true],
-                    ['alternativa' => 'Lob', 'is_correta' => false],
-                    ['alternativa' => 'Drop Shot', 'is_correta' => false],
-                    ['alternativa' => 'Smash', 'is_correta' => false],
+                    ['alternativa' => 'Parmesão', 'is_correta' => false],
+                    ['alternativa' => 'Camembert', 'is_correta' => false],
+                    ['alternativa' => 'Gorgonzola', 'is_correta' => false],
+                    ['alternativa' => 'Todas as opções acima', 'is_correta' => true],
                 ],
             ],
             [
-                'pergunta' => 'Pensando no parmesão como um queijo consistente, poderoso e muito admirado, se ele fosse um estilo de jogo, qual seria?',
+                'pergunta' => 'O Reserva Especial Faixa Azul possui um tempo diferenciado de maturação em relação a outros queijos da categoria. De quanto tempo estamos falando?',
                 'respostas' => [
-                    ['alternativa' => 'Baseline agressivo', 'is_correta' => true],
-                    ['alternativa' => 'Serve-and-volley', 'is_correta' => false],
-                    ['alternativa' => 'All-court', 'is_correta' => false],
-                    ['alternativa' => 'Defensive retriever', 'is_correta' => false],
+                    ['alternativa' => '8 meses', 'is_correta' => false],
+                    ['alternativa' => '12 meses', 'is_correta' => false],
+                    ['alternativa' => '16 meses', 'is_correta' => false],
+                    ['alternativa' => '18 meses', 'is_correta' => true],
                 ],
             ],
             [
-                'pergunta' => 'O gouda é conhecido por sua textura macia e suavidade. Qual jogada reflete essa característica?',
+                'pergunta' => 'Você sabe qual queijo é super tradicional na região Nordeste e era consumido apenas pela realeza do Brasil na sua chegada ao país?',
                 'respostas' => [
-                    ['alternativa' => 'Voleio suave', 'is_correta' => true],
-                    ['alternativa' => 'Ace', 'is_correta' => false],
-                    ['alternativa' => 'Forehand potente', 'is_correta' => false],
-                    ['alternativa' => 'Smash', 'is_correta' => false],
+                    ['alternativa' => 'Reino', 'is_correta' => true],
+                    ['alternativa' => 'Gruyère', 'is_correta' => false],
+                    ['alternativa' => 'Emmental', 'is_correta' => false],
+                    ['alternativa' => 'Brie', 'is_correta' => false],
                 ],
             ],
             [
-                'pergunta' => 'A elegância e a versatilidade do Gouda combinam com qual atitude em quadra?',
+                'pergunta' => 'Qual é a origem do queijo gorgonzola?',
                 'respostas' => [
-                    ['alternativa' => 'Jogo de rede sutil', 'is_correta' => true],
-                    ['alternativa' => 'Defesa intransigente', 'is_correta' => false],
-                    ['alternativa' => 'Saque agressivo', 'is_correta' => false],
-                    ['alternativa' => 'Rally intenso', 'is_correta' => false],
+                    ['alternativa' => 'França', 'is_correta' => false],
+                    ['alternativa' => 'Suíça', 'is_correta' => false],
+                    ['alternativa' => 'Itália', 'is_correta' => true],
+                    ['alternativa' => 'Holanda', 'is_correta' => false],
                 ],
             ],
             [
-                'pergunta' => 'Responsável por dar fama aos queijos suíços, o emmental tem furos internos conhecidos como olhaduras. Qual termo do tênis se encaixa com essa característica?',
+                'pergunta' => 'Qual queijo de origem holandesa é perfeito para ser consumido em pequenas porções e harmoniza muito bem com vinhos pinot noir, cervejas pilsen e pastrami?',
                 'respostas' => [
-                    ['alternativa' => 'Passing shot', 'is_correta' => true],
-                    ['alternativa' => 'Ace', 'is_correta' => false],
-                    ['alternativa' => 'Voleio', 'is_correta' => false],
-                    ['alternativa' => 'Deuce', 'is_correta' => false],
+                    ['alternativa' => 'Brie', 'is_correta' => false],
+                    ['alternativa' => 'Camembert', 'is_correta' => false],
+                    ['alternativa' => 'Emmental', 'is_correta' => false],
+                    ['alternativa' => 'Gouda', 'is_correta' => true],
                 ],
             ],
             [
-                'pergunta' => 'O emmental é um queijo leve, com textura macia. Qual golpe do tênis pode representar essa leveza?',
+                'pergunta' => 'Este queijo tem diversas premiações nacionais e internacionais, sendo extremamente reconhecido pelo nosso consumidor por seu sabor, textura e personalidade única.',
                 'respostas' => [
-                    ['alternativa' => 'Slice de backhand', 'is_correta' => true],
-                    ['alternativa' => 'Forehand topspin', 'is_correta' => false],
-                    ['alternativa' => 'Saque forçado', 'is_correta' => false],
-                    ['alternativa' => 'Smash violento', 'is_correta' => false],
+                    ['alternativa' => 'Gouda', 'is_correta' => false],
+                    ['alternativa' => 'Gorgonzola', 'is_correta' => false],
+                    ['alternativa' => 'Camembert', 'is_correta' => false],
+                    ['alternativa' => 'Parmesão', 'is_correta' => true],
                 ],
             ],
             [
-                'pergunta' => 'O gruyère é um queijo sofisticado com sabor complexo. Qual estratégia no tênis reflete essa complexidade?',
+                'pergunta' => 'Qual queijo parmesão Faixa Azul é extraído da parte mais nobre de sua forma?',
                 'respostas' => [
-                    ['alternativa' => 'Variação tática com transição rápida', 'is_correta' => true],
-                    ['alternativa' => 'Serve-and-volley', 'is_correta' => false],
-                    ['alternativa' => 'Baseline puro', 'is_correta' => false],
-                    ['alternativa' => 'Jogo defensivo extremo', 'is_correta' => false],
-                ],
-            ],
-            [
-                'pergunta' => 'O gruyère é um queijo semiduro que derrete na boca ao ser degustado e derrete bem. Qual jogada é "fluida" como ele?',
-                'respostas' => [
-                    ['alternativa' => 'Rali consistente', 'is_correta' => true],
-                    ['alternativa' => 'Saque direto', 'is_correta' => false],
-                    ['alternativa' => 'Drop shot curto', 'is_correta' => false],
-                    ['alternativa' => 'Smash de finalização', 'is_correta' => false],
-                ],
-            ],
-
-            [
-                'pergunta' => 'O queijo reino é forte, intenso e marcante. Qual técnica do tênis tem essa força?',
-                'respostas' => [
-                    ['alternativa' => 'Forehand agressivo', 'is_correta' => true],
-                    ['alternativa' => 'Slice defensivo', 'is_correta' => false],
-                    ['alternativa' => 'Voleio suave', 'is_correta' => false],
-                    ['alternativa' => 'Drop shot', 'is_correta' => false],
-                ],
-            ],
-
-            [
-                'pergunta' => 'O queijo reino tem personalidade e seu sabor é impossível de ser ignorado. Se fosse um tenista, qual seria sua característica?',
-                'respostas' => [
-                    ['alternativa' => 'Dominante no saque', 'is_correta' => true],
-                    ['alternativa' => 'Paciente no baseline', 'is_correta' => false],
-                    ['alternativa' => 'Jogador de contra-ataque', 'is_correta' => false],
-                    ['alternativa' => 'Especialista em ralis longos', 'is_correta' => false],
-                ],
-            ],
-            [
-                'pergunta' => 'O brie é cremoso e delicado para ser apreciado em seus mínimos detalhes. Qual jogada reflete essa suavidade?',
-                'respostas' => [
-                    ['alternativa' => 'Drop shot', 'is_correta' => true],
-                    ['alternativa' => 'Ace poderoso', 'is_correta' => false],
-                    ['alternativa' => 'Forehand chapado', 'is_correta' => false],
-                    ['alternativa' => 'Smash', 'is_correta' => false],
-                ],
-            ],
-            [
-                'pergunta' => 'O brie é conhecido por sua suavidade e sofisticação. Qual técnica do tênis representa essas qualidades?',
-                'respostas' => [
-                    ['alternativa' => 'Voleio elegante na rede', 'is_correta' => true],
-                    ['alternativa' => 'Saque potente', 'is_correta' => false],
-                    ['alternativa' => 'Forehand agressivo', 'is_correta' => false],
-                    ['alternativa' => 'Devolução chapada', 'is_correta' => false],
+                    ['alternativa' => 'Fatia Parmesão Faixa Azul', 'is_correta' => false],
+                    ['alternativa' => 'Cilindro Parmesão Faixa Azul', 'is_correta' => true],
+                    ['alternativa' => 'Ralado Parmesão Faixa Azul', 'is_correta' => false],
+                    ['alternativa' => 'Reserva Especial 18 Meses', 'is_correta' => false],
                 ],
             ],
             [
@@ -142,14 +95,35 @@ class PerguntasSeeder extends Seeder
                 ],
             ],
             [
-                'pergunta' => 'O gorgonzola é um queijo de sabor intenso e cheio de personalidade. Se fosse um tenista, qual seria sua principal qualidade?',
+                'pergunta' => 'O queijo reino tem personalidade e seu sabor é impossível de ser ignorado. Se fosse um tenista, qual seria sua característica?',
                 'respostas' => [
-                    ['alternativa' => 'Estilo agressivo e impactante', 'is_correta' => true],
-                    ['alternativa' => 'Defesa consistente', 'is_correta' => false],
-                    ['alternativa' => 'Paciência tática', 'is_correta' => false],
-                    ['alternativa' => 'Jogo de rede sutil', 'is_correta' => false],
+                    ['alternativa' => 'Dominante no saque', 'is_correta' => true],
+                    ['alternativa' => 'Paciente no baseline', 'is_correta' => false],
+                    ['alternativa' => 'Jogador de contra-ataque', 'is_correta' => false],
+                    ['alternativa' => 'Especialista em ralis longos', 'is_correta' => false],
                 ],
             ],
+            [
+
+                'pergunta' => 'Responsável por dar fama aos queijos suíços, o emmental tem furos internos conhecidos como olhaduras. Qual termo do tênis se encaixa nessa característica?',
+                'respostas' => [
+                    ['alternativa' => 'Passada', 'is_correta' => true],
+                    ['alternativa' => 'Ace', 'is_correta' => false],
+                    ['alternativa' => 'Voleio ', 'is_correta' => false],
+                    ['alternativa' => 'Deuce', 'is_correta' => false],
+                ],
+            ],
+            [
+
+                'pergunta' => 'A elegância e a versatilidade do gouda combinam com qual atitude em quadra?',
+                'respostas' => [
+                    ['alternativa' => 'Jogo de rede sutil ', 'is_correta' => true],
+                    ['alternativa' => 'Defesa intransigente', 'is_correta' => false],
+                    ['alternativa' => 'Saque agressivo ', 'is_correta' => false],
+                    ['alternativa' => 'Rally intenso', 'is_correta' => false],
+                ],
+            ],
+
         ];
 
         foreach ($perguntasRespostas as $item) {

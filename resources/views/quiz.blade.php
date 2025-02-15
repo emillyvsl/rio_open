@@ -70,7 +70,7 @@
           `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
 
         // Envia os resultados automaticamente após 1 minuto e 10 segundos
-        if (minutes >= 1 && remainingSeconds >= 10) {
+        if (minutes >= 1 && remainingSeconds >= 20) {
           clearInterval(timerInterval); // Para o timer
           markUnansweredQuestionsAsWrong(); // Marca perguntas não respondidas como erradas
           sendResults(); // Envia os resultados

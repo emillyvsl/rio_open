@@ -13,6 +13,12 @@ class PerguntasController extends Controller
     public function index($id)
     {
         $participanteId = $id;
+        $is_jogou = Jogo::where('participante_id', $participanteId)->where('tipo_jogo', 'PERGUNTAS')->count();
+
+        if ($is_jogou) {
+            return redirect()->route('dashboard')->with('error', 'Você já jogou esse jogo!');
+        }
+
         $perguntas = Pergunta::with([
             'respostas' => function ($query) {
                 $query->inRandomOrder();
@@ -21,6 +27,7 @@ class PerguntasController extends Controller
 
         return view('quiz', compact('perguntas', 'participanteId'));
     }
+
 
 
     public function store(Request $request)

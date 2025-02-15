@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/estoque/editar', action: [EstoqueController::class, 'update'])->name('estoque.editar');
 
 
+    Route::get('/regulamento', [ParticipanteController::class, 'regulamento'])->name('participante.regulamento');
+
+
 
 
 
