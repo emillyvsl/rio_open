@@ -93,7 +93,7 @@
                             @if ($participantes->count() == 0)
                                 Nenhum participante encontrado.
                             @else
-                                {{ $participantes->links() }}
+                                {{ $participantes->onEachSide(1)->links() }}
                             @endif
                         </td>
 
