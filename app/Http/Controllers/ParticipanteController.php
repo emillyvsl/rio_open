@@ -17,7 +17,7 @@ class ParticipanteController extends Controller
                 return $query->where('cpf', 'like', '%' . $searchCpf . '%');
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(9);
 
         return view('home', compact('participantes'));
     }
